@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', event => {
             slider.value = FanStatus['speed'];
             sliderValue.innerHTML = FanStatus['speed'];
             
-            let absoluteSaturationValue = FanStatus['speed'] / 1 + 100;
+            let absoluteSaturationValue = FanStatus['speed'] / 0.9 + 100;
             document.getElementById("image2").style.filter = "saturate(" + absoluteSaturationValue + "%)";
             document.getElementById('title2').style.filter = "saturate(" + absoluteSaturationValue + "%)";
 
