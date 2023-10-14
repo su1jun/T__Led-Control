@@ -1,0 +1,87 @@
+        <!-- Image Section-->
+        {% extends "index.html" %}
+
+        {% block control_container %} 
+        <main class="container">
+            <!-- Image Grid Items-->
+            <div class="row justify-content-center">
+                <!-- Image Item 1-->
+                <div class="col-md-6 mb-5 image-block">
+                    <div class="images-item mx-auto">
+                        <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch1">
+                            <div class="images-item-caption-content text-center text-white"><i class="fas fa-mouse fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" id="image1" src="/static/assets/img/gray.jpg" alt="image1" />
+                    </div>
+                    <div class="title-text text-wrap" id="title1">LED 01</div>
+                    <div class="content-text text-wrap">
+                        <p class="mb-1">
+                            Click And Controll LED<br>
+                            Activated LED`s color status<br>
+                        </p>
+                        <p class="fs-4 fw-bold" id="text1">
+                            None
+                        </p>
+                    </div>
+                </div>
+                <!-- Image Item 2-->
+                <div class="col-md-6 mb-5 image-block">
+                    <div class="images-item mx-auto">
+                        <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch2">
+                            <div class="images-item-caption-content text-center text-white"><i class="fas fa-mouse fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" id="image2" src="/static/assets/img/gray.jpg" alt="image2" />
+                    </div>
+                    <div class="title-text text-wrap" id="title2">LED 02</div>
+                    <div class="content-text text-wrap">
+                        <p class="mb-1">
+                            Click And Controll LED<br>
+                            Activated LED`s color status<br>
+                        </p>
+                        <p class="fs-4 fw-bold" id="text2">
+                            None
+                        </p>
+                    </div>
+                </div>
+                <!-- Image Item 3-->
+                <div class="col-md-6 mb-5 image-block">
+                    <div class="images-item mx-auto">
+                        <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch3">
+                            <div class="images-item-caption-content text-center text-white"><i class="fas fa-mouse fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" id="image3" src="/static/assets/img/gray.jpg" alt="image3" />
+                    </div>
+                    <div class="title-text text-wrap" id="title3">LED 03</div>
+                    <div class="content-text text-wrap">
+                        <p class="mb-1">
+                            Click And Controll LED<br>
+                            Activated LED`s color status<br>
+                        </p>
+                        <p class="fs-4 fw-bold" id="text3">
+                            None
+                        </p>
+                    </div>
+                </div>
+                <!-- Image Item 4-->
+                <div class="col-md-6 mb-5 image-block">
+                    <div class="images-item mx-auto">
+                        <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch4">
+                            <div class="images-item-caption-content text-center text-white"><i class="fas fa-mouse fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" id="image4" src="/static/assets/img/gray.jpg" alt="image4" />
+                    </div>
+                    <div class="title-text text-wrap" id="title4">LED 04</div>
+                    <div class="content-text text-wrap">
+                        <p class="mb-1">
+                            Click And Controll LED<br>
+                            Activated LED`s color status<br>
+                        </p>
+                        <p class="fs-4 fw-bold" id="text4">
+                            None
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="/static/js/led.js"></script>
+        {% endblock %}
