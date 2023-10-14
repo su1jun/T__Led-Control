@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     var ImageDri = '/static/assets/img/';  // 이미지 고정 경로
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/rs/fan'); // websocket handler
+    var socket = new WebSocket('wss://' + window.location.host + '/ws/rs/fan'); // websocket handler
 
     socket.addEventListener('open', () => { // open websocket
         // console.log('WebSocket 연결이 열렸습니다.');

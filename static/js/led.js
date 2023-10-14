@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded', event => {
             
     }
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/led'); // websocket handler
+    var socket = new WebSocket('wss://' + window.location.host + '/ws/led'); // websocket handler
 
     socket.addEventListener('open', () => { // open websocket
         // console.log('WebSocket 연결이 열렸습니다.');
