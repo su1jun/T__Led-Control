@@ -37,7 +37,7 @@
     <li><b>Back-end</b> : FastAPI</li>
     <li><b>Additional Logic</b> : Python</li>
 </ul>
-<br>
+<br><br>
 
 <footer>
     <p>&copy; 2023 Jang Yu Sub</p>
