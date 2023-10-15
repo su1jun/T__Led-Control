@@ -1,42 +1,42 @@
 <h1>LED Control</h1>
 
 <p>
-    This is miniproject for my course, Inteligence Control
-    Goal of this projetc is to make web server with raspberrypi and control led connected from it
-    You can access to "www.ledcontrol.site" during server work
+    Welcome to my mini-project for the "Intelligent Control" course.<br>
+    The objective of this project is to develop a web server using Raspberry Pi, which allows us to control an LED remotely.<br>
+    Visit wwww.ledcontrol.site to access the control panel while the server is running.
 </p>
 
 <h2>Key Porint</h2>
 
 <p>
-    I wanted to make panel that can be controlled by someone
-    For this goal, I used Websocket to support <b>asynchronous communication</b>
+    My aim was to create a panel that can be controlled remotely.<br>
+    To achieve this, I utilized Websockets to enable <b>asynchronous communication</b>.
 </p>
 
-<h2>How work?</h2>
+<h2>How Does It Work?</h2>
 
-<p>
-    1. Get in this site
-    2. Move to one of the control panels you want control such as Red LED, Blue LED, Green LED and Fan by clicking one of the menue
-    3. then you can control LED or Fan by clicking one of the images or button
-    4. As you click these one, server receive your data and process the work
-       and then server send you the data and you can see what is turn on or off
-</p>
+<ol>
+    <li>Visit the site.</li>
+    <li>Select one of the control panels for the device you want to control (e.g., Red LED, Blue LED, Green LED, or Fan) by clicking on one of the menu options.</li>
+    <li>Control the LED or Fan by clicking on an image or button.</li>
+    <li>Once clicked, the server receives your data, processes the command, sends back data, and allows you to see whether the device is turned on or off.</li>
+</ol>
 
-<h3>How make?</h3>
-
-<p>
-    Hardware :
-        main : Raspberry pi 4
-        part : Some of LED, Fan motor
-        circuit : Jumper line, bread borad
-    Software : 
-        publishing : HTML + CSS(Boot Strap)
-        front-end : vanilla JS
-        Back-end : fastAPI
-        other logic : python
-</p>
+<h2>Build Details</h2>
+<h3>Hardware</h3>
+<ul>
+    <li>Main: Raspberry Pi 4</li>
+    <li>Components: Various LEDs, Fan Motor</li>
+    <li>Circuit: Jumper Wires, Breadboard</li>
+</ul>
+<h3>Software</h3>
+<ul>
+    <li>Publishing: HTML + CSS (Bootstrap)</li>
+    <li>Front-end: Vanilla JS</li>
+    <li>Back-end: FastAPI</li>
+    <li>Additional Logic: Python</li>
+</ul>
 
 <footer>
-    &copy; 2023 Jang Yu Sub
+    <p>&copy; 2023 Jang Yu Sub</p>
 </footer>
