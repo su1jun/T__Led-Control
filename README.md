@@ -17,9 +17,9 @@
 <h2>How Does It Work?</h2>
 <ul>
     <li>Visit the site.</li>
-    <li>Select one of the <b>control panels for</b> the device you want to control (e.g., Red LED, Blue LED, Green LED, or Fan) by clicking on one of the menu options.</li>
+    <li>Select one of the <b>control panels for</b> the device you want to control <br>(e.g., Red LED, Blue LED, Green LED, or Fan) by clicking on one of the menu options.</li>
     <li>Control the <b>LED</b> or <b>Fan</b> by clicking on an image or button.</li>
-    <li>Once clicked, the server receives your data, processes the command, sends back data, and allows you to see whether the <b>device is turned on or off.</b></li>
+    <li>Once clicked, the server receives your data, processes the command, <br>sends back data, and allows you to see whether the <b>device is turned on or off.</b></li>
 </ul>
 <br>
 
