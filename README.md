@@ -1,34 +1,42 @@
-
-<h1>프로젝트 제목</h1>
+<h1>LED Control</h1>
 
 <p>
-    이 프로젝트는 어떤 목적을 위해 만들어진 것이며, 그 목적에 대한 간단한 설명을 여기에 추가하세요.
+    This is miniproject for my course, Inteligence Control
+    Goal of this projetc is to make web server with raspberrypi and control led connected from it
+    You can access to <a href="www.ledcontrol.site>www.ledcontrol.site</a> during server work
 </p>
 
-<h2>섹션 1</h2>
+<h2>Key Porint</h2>
 
 <p>
-    이 섹션은 프로젝트의 중요한 부분이나 기능에 대한 설명을 넣을 수 있습니다.
+    I wanted to make panel that can be controlled by someone
+    For this goal, I used Websocket to support <b>asynchronous communication</b>
 </p>
 
-<h2>섹션 2</h2>
+<h2>How work?</h2>
 
 <p>
-    이 섹션은 다른 부분이나 기능에 대한 설명을 추가할 수 있는 곳입니다.
+    1. Get in this site
+    2. Move to one of the control panels you want control such as Red LED, Blue LED, Green LED and Fan by clicking one of the menue
+    3. then you can control LED or Fan by clicking one of the images or button
+    4. As you click these one, server receive your data and process the work
+       and then server send you the data and you can see what is turn on or off
 </p>
 
-<h3>하위 섹션</h3>
+<h3>How make?</h3>
 
 <p>
-    필요한 경우 세부 정보나 가이드를 추가할 수 있습니다.
-</p>
-
-<h2>섹션 3</h2>
-
-<p>
-    더 많은 내용을 추가하세요.
+    Hardware :
+        main : Raspberry pi 4
+        part : Some of LED, Fan motor
+        circuit : Jumper line, bread borad
+    Software : 
+        publishing : HTML + CSS(Boot Strap)
+        front-end : vanilla JS
+        Back-end : fastAPI
+        other logic : python
 </p>
 
 <footer>
-    &copy; 2023 당신의 이름
+    &copy; 2023 Jang Yu Sub
 </footer>
