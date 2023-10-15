@@ -3,7 +3,7 @@
 <p>
     This is miniproject for my course, Inteligence Control
     Goal of this projetc is to make web server with raspberrypi and control led connected from it
-    You can access to <a href="www.ledcontrol.site>www.ledcontrol.site</a> during server work
+    You can access to "www.ledcontrol.site" during server work
 </p>
 
 <h2>Key Porint</h2>
