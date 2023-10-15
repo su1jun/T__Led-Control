@@ -5,7 +5,7 @@
     The objective of this project is to develop a <b>web server</b> using Raspberry Pi, which allows us to control an LED remotely.<br>
     <b>Visit www.ledcontrol.site to access the control panel while the server is running.</b>
 </p>
-<br><br>
+<br>
 
 <h2>Key Porint</h2>
 <p>
@@ -21,7 +21,7 @@
     <li>Control the <b>LED</b>b> or <b>Fan</b> by clicking on an image or button.</li>
     <li>Once clicked, the server receives your data, processes the command, sends back data, and allows you to see whether the <b>device is turned on or off.</b></li>
 </ol>
-<br><br>
+<br>
 
 <h2>Build Details</h2>
 <h3>Hardware</h3>
@@ -37,7 +37,7 @@
     <li><b>Back-end</b> : FastAPI</li>
     <li><b>Additional Logic</b> : Python</li>
 </ul>
-<br><br>
+<br>
 
 <footer>
     <p>&copy; 2023 Jang Yu Sub</p>
