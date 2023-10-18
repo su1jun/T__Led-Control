@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     var ImageDri = '/static/assets/img/';
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/ras');
+    var socket = new WebSocket('wss://' + window.location.host + '/ws/ras');
 
     socket.addEventListener('open', () => {
         rasSatus['ip'] = clientIp;

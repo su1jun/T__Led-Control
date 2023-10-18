@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', event => {
             
     }
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/led');
+    var socket = new WebSocket('wss://' + window.location.host + '/ws/led');
 
     socket.addEventListener('open', () => {
         ledStatus['ip'] = clientIp;
