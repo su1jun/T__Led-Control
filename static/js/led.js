@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', event => {
     var page = '';
 
     const clientIp = document.getElementById("myname").value;
-    console.log("ip 생성", clientIp)
+
     if (domain === '127.0.0.1') {
         if (path === "/") {
             page = 'gray';
