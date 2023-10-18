@@ -1,39 +1,36 @@
-        <!-- Image Section-->
+
         {% extends "index.html" %}
 
         {% block control_container %} 
         <main class="container">
-            <!-- Image Grid Items-->
             <div class="row justify-content-center">
-                <!-- Image Item 1-->
                 <div class="col-md-12 mb-5 image-block">
                     <div class="images-item mx-auto">
-                        <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch1">
+                        <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch1" data-bs-toggle="modal" data-bs-target="#Modal1">
                             <div class="images-item-caption-content text-center text-white"><i class="fas fa-mouse fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" id="image1" src="/static/assets/img/fan_off.jpg" alt="image1" />
+                        <img class="img-fluid" id="image1" src="/static/assets/img/lcd.jpg" alt="image1" />
                     </div>
-                    <div class="title-text text-wrap" id="title1">FAN</div>
+                    <div class="title-text text-wrap text-color" id="title1">LCD</div>
                     <div class="content-text text-wrap">
                         <p class="mb-1">
-                            Click And Control FAN<br>
-                            FAN`s status<br>
+                            Click And Input your text<br>
+                            LCD`s screen status<br>
                         </p>
                         <p class="fs-4 fw-bold" id="text1">
-                            Off
+                            
                         </p>
                     </div>
                 </div>
-                <!-- Image Item 2-->
                 <div class="container d-flex align-items-center flex-column justify-content-center"></div>
                     <div class="col-md-12 mb-2 image-block">
                         <div class="images-item mx-auto">
                             <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch1">
                                 <div class="images-item-caption-content text-center text-white"><i class="fa-solid fa-wind fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" id="image2" src="/static/assets/img/wind_speed.jpg" alt="image2" />
+                            <img class="img-fluid" id="image2" src="/static/assets/img/fan.jpg" alt="image2" />
                         </div>
-                        <div class="title-text text-wrap text-color" id="title2">Speed</div>
+                        <div class="title-text text-wrap" id="title2">Fan</div>
                         <div class="content-text text-wrap">
                             <p class="mb-1">
                                 Drag and Control Fan`s Speed<br>
@@ -41,7 +38,6 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Scllobar -->
                     <div class="d-flex align-items-center flex-column justify-content-center">
                         <input type="range" min="0" max="100" value="50" class="form-range custom-slider py-1 mb-2" id="slider">
                         <button class="btn btn-primary btn-custom" id="myButton"><span class="text-center fw-bold fs-4 px-2" id="sliderValue">50</span></button>
@@ -51,20 +47,43 @@
         </main>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-        <script src="/static/js/fan.js"></script>
+        <script src="/static/js/etc.js"></script>
         <script>
-            // 슬라이더 값을 표시하는 함수
             function updateSliderValue() {
                 var slider = document.getElementById("slider");
                 var sliderValue = document.getElementById("sliderValue");
                 sliderValue.innerHTML = slider.value;
             }
 
-            // 슬라이더 값 변경 이벤트 핸들러 등록
             var slider = document.getElementById("slider");
             slider.addEventListener("input", updateSliderValue);
 
-            // 초기 슬라이더 값 표시
             updateSliderValue();
           </script>
+
+        <div class=" modal fade" id="Modal1" tabindex="-1" aria-labelledby="Modal1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal-custom">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-10">
+                                    <h2 class="text-secondary mb-0">LCD Display</h2>
+                                    <div class="divider-custom"><div class="divider-custom-line2 mx-0"></div></div>
+                                    <div class="form-floating mb-5">
+                                        <input class="form-control" id="stringForm" type="text" placeholder="Enter your value..."/>
+                                        <label for="nameLabel">Please enter your text</label>
+                                        <div id="errorMsg" class="text-danger mt-2 fs-6" style="display: none;">Only English, Numbers, Spaces,<br>and special  ;:,?!-_()*%# are valid</div>
+                                    </div>
+                                    <button class="btn btn-primary" id="submitButton" data-bs-dismiss="modal">
+                                        <p class="text-center fw-bold fs-5 px-1 mb-0">Save and Close</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endblock %}

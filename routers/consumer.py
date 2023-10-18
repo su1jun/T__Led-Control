@@ -1,14 +1,15 @@
 from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 from typing import List
-import json
+import json, re
 
+ws_rounter = APIRouter() # domain rounter
+
+# Instantiate variables
 class Pattern:
     def __init__(self):
         self.val = "^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$"
 
-ws_rounter = APIRouter()
-
-class Pin:
+class PIN:
     def __init__(self):
         self.status = {
             "red" : [21, 21, 21, 21],
@@ -20,80 +21,109 @@ class Pin:
 class LED:
     def __init__(self):
         self.status = {
+            "type": True,
             "red": [False, False, False, False],
             "green": [False, False, False, False],
             "blue": [False, False, False, False]
         }
 
-class FAN:
+class RAS:
     def __init__(self):
         self.status = {
-            "power": False,
-            "speed": '0'
+            "type" : True,
+            "speed" : '50',
+            "string" : ''
         }
+        self.client_ip = {} # ip
+        
 
 led = LED()
-fan = FAN()
-pin = Pin()
+ras = RAS()
+pin = PIN()
 
 # led panel handshake
-clients_led: List[WebSocket] = [] 
 @ws_rounter.websocket("/ws/led")
-async def websocket_endpoint(websocket: WebSocket):
+async def websocket_endpoint_led(websocket: WebSocket):
     
+    # accept signal
     await websocket.accept()
     await websocket.send_text(json.dumps(led.status))
-    clients_led.append(websocket)
 
     try:
         while True:
+            # wait receive data
             data = await websocket.receive_text()
             data = json.loads(data)
 
-            for pin_color in data:
-                for idx, pin in enumerate(data[pin_color]):
+            if data['type']:
+                # led update
+                for pin_color in data:
+                    if type(data[pin_color]) == list:
+                        for idx, pin in enumerate(data[pin_color]):
 
-                    if type(pin) == bool:
-                        if led.status[pin_color][idx] != pin: # find changed pin
-                            led.status[pin_color][idx] = pin
-                    else:
-                        raise HTTPException(status_code=400, detail="request is invalid")
+                            if type(pin) == bool:
+                                led.status[pin_color][idx] = pin
+                            else:
+                                raise HTTPException(status_code=400, detail="request is invalid")
+                        
+            else: # add new ip address
+                if data['ip'] not in ras.client_ip:
+                    ras.client_ip[websocket] = data['ip']
+                
+                    # print(f"new add {ras.client_ip}")
 
-            for client in clients_led:
+            # led status broadcast
+            for client in ras.client_ip:
                 await client.send_text(json.dumps(led.status))
+            
+            # print(f"broadcast list {ras.client_ip}")
 
     except WebSocketDisconnect:
-        clients_led.remove(websocket)
+        del ras.client_ip[websocket]
 
-# fan panel handshake
-clients_fan: List[WebSocket] = [] 
-@ws_rounter.websocket("/ws/rs/fan")
-async def websocket_endpoint(websocket: WebSocket):
+# ras panel handshake
+@ws_rounter.websocket("/ws/ras")
+async def websocket_endpoint_ras(websocket: WebSocket):
     
     await websocket.accept()
-    await websocket.send_text(json.dumps(fan.status))
-    clients_fan.append(websocket)
+    await websocket.send_text(json.dumps(ras.status))
 
     try:
         while True:
+            # wait receive data
             data = await websocket.receive_text()
             data = json.loads(data)
-            if type(data['power']) == bool:
-                if fan.status['power'] != data['power']:
-                    fan.status['power'] = data['power']
-            else:
-                raise HTTPException(status_code=400, detail="request is invalid")
 
-            if type(data['speed']) == str:
-                if 0 <= int(data['speed']) and int(data['speed']) <= 100:
-                    if fan.status['speed'] != data['speed']:
-                        fan.status['speed'] = data['speed']
-            else:
-                raise HTTPException(status_code=400, detail="request is invalid")
-
-            for client in clients_fan:
-                await client.send_text(json.dumps(fan.status))
+            if data['type']:
+                # name update
+                if type(data['string']) == str: # check input
+                    pattern = r'^[a-zA-Z0-9;:,.?!-_()*%#\s]{0,16}$'
+                    if re.match(pattern, data['string']):
+                        ras.status["string"] = data['string']
                 
-    except WebSocketDisconnect:
-        clients_fan.remove(websocket)
+                else:
+                    raise HTTPException(status_code=400, detail="request is invalid")
+                # fan update
+                if type(data['speed']) == str: # check input
+                    if 0 <= int(data['speed']) and int(data['speed']) <= 100:
+                        ras.status["speed"] = data['speed'] # save data
+                else:
+                    raise HTTPException(status_code=400, detail="request is invalid")
+                
+            else: # add new ip address
+                # print(f"all ip {ras.client_ip}")
+                if data['ip'] not in ras.client_ip:
+                    ras.client_ip[websocket] = data['ip']
+                    
+                    # print(f"new add {ras.client_ip}")
+                    # print(f"all ip {ras.client_ip}")
 
+            # ras status broadcast
+            for client in ras.client_ip:
+                # print(f"보냄 {ras.status}")
+                await client.send_text(json.dumps(ras.status))
+
+            # print(f"broadcast list {ras.client_ip}")
+
+    except WebSocketDisconnect:
+        del ras.client_ip[websocket]

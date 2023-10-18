@@ -19,8 +19,16 @@ class Pattern:
 
 pattern = Pattern()
 
+class Client_Info:
+    def __init__(self):
+        self.idx = 0
+        self.info = []
+        
 @my_rounter.get("/", response_class=HTMLResponse)
 async def index(request: Request):
+    
+    client_ip = request.client.host # ip adress
+    
     try:
         return templates.TemplateResponse("led.html", {
             "request": request,
@@ -35,83 +43,93 @@ async def index(request: Request):
             "rad_text" : "",
             "green_text" : "",
             "blue_text" : "",
-            "gray_text" : "gray-text"
+            "gray_text" : "gray-text",
+            
+            "client_ip": client_ip
         })
     except:
         raise HTTPException(status_code=404, detail="Not found Page")
 
 @my_rounter.get("/{color}", response_class=HTMLResponse)
 async def led_load(request: Request, color : str = Path(..., title=" ")):
+
+    client_ip = request.client.host # ip adress
+
     if len(color) > 10:
         raise HTTPException(status_code=400, detail="request is invalid")
 
-    if color not in ['red', 'blue', 'green']:
-        raise HTTPException(status_code=400, detail="request is invalid")
+    if color in ["red", "blue", "green"]:
+        try:
+            red_active = ""
+            green_active = ""
+            blue_active = ""
 
-    try:
-        red_active = ""
-        green_active = ""
-        blue_active = ""
+            rad_text = ""
+            green_text = ""
+            blue_text = ""
 
-        rad_text = ""
-        green_text = ""
-        blue_text = ""
+            main_img = color
 
-        main_img = color
+            if color == "red":
+                red_active = "active"
+                rad_text = "red-text"
 
-        if color == "red":
-            red_active = "active"
-            rad_text = "red-text"
+            elif color == "green":
+                green_active = "active"
+                green_text = "green-text"
 
-        elif color == "green":
-            green_active = "active"
-            green_text = "green-text"
+            elif color == "blue":
+                blue_active = "active"
+                blue_text = "blue-text"
 
-        elif color == "blue":
-            blue_active = "active"
-            blue_text = "blue-text"
+            color = str(color) + "-color"
+        except:
+            raise HTTPException(status_code=404, detail="Not found Page")
+        
+        try:
+            return templates.TemplateResponse("led.html", {
+                "request": request,
+                "color": color,
+                "main_img": main_img,
 
-        color = str(color) + "-color"
-    except:
-        raise HTTPException(status_code=404, detail="Not found Page")
+                "red_active" : red_active,
+                "green_active" : green_active,
+                "blue_active" : blue_active,
+                "fan_active" : "",
+
+                "rad_text" : rad_text,
+                "green_text" : green_text,
+                "blue_text" : blue_text,
+                "gray_text" : "",
+
+                "client_ip": client_ip
+            })
+        except:
+            raise HTTPException(status_code=404, detail="Not found Page")
     
-    try:
-        return templates.TemplateResponse("led.html", {
-            "request": request,
-            "color": color,
-            "main_img": main_img,
+    elif color == "etc":
+        try:
+            return templates.TemplateResponse("etc.html", {
+                "request": request,
+                "color": "gray-color",
+                "main_img": "fan",
 
-            "red_active" : red_active,
-            "green_active" : green_active,
-            "blue_active" : blue_active,
-            "fan_active" : "",
+                "red_active" : "",
+                "green_active" : "",
+                "blue_active" : "",
+                "fan_active" : "active",
 
-            "rad_text" : rad_text,
-            "green_text" : green_text,
-            "blue_text" : blue_text,
-            "gray_text" : ""
-        })
-    except:
-        raise HTTPException(status_code=404, detail="Not found Page")
+                "rad_text" : "",
+                "green_text" : "",
+                "blue_text" : "",
+                "gray_text" : "gray-text",
 
-@my_rounter.get("/rs/fan", response_class=HTMLResponse)
-async def led_load(request: Request):
-    try:
-        return templates.TemplateResponse("fan.html", {
-            "request": request,
-            "color": "gray-color",
-            "main_img": "fan",
-
-            "red_active" : "",
-            "green_active" : "",
-            "blue_active" : "",
-            "fan_active" : "active",
-
-            "rad_text" : "",
-            "green_text" : "",
-            "blue_text" : "",
-            "gray_text" : "gray-text"
-        })
-    except:
-        raise HTTPException(status_code=404, detail="Not found Page")
+                "client_ip": client_ip
+            })
+        except:
+            raise HTTPException(status_code=404, detail="Not found Page")
+    
+    else:
+        raise HTTPException(status_code=400, detail="request is invalid")
+    
     
