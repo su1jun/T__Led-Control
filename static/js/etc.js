@@ -43,8 +43,12 @@ window.addEventListener('DOMContentLoaded', event => {
                 document.getElementById("image2").src = ImageDri + 'fan_off.jpg';
                 document.getElementById("title2").style.color = "gray";
             }
-
-            document.getElementById('text1').textContent = rasSatus['string']
+            
+            if (rasSatus['string'] == '') {
+                document.getElementById('text1').textContent = "None"
+            } else {
+                document.getElementById('text1').textContent = rasSatus['string']
+            }
 
         } catch(error) {
             rasSatus = {
