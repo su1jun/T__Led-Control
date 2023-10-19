@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const clientIp = document.getElementById("myname").value;
 
     var rasSatus = {
-        type : false,
+        type : '0',
         speed : '0',
         string : '',
         ip : clientIp
@@ -23,36 +23,37 @@ window.addEventListener('DOMContentLoaded', event => {
         const data = JSON.parse(event['data']);
 
         try {
-            rasSatus['type'] = data['type'];
-            rasSatus['speed'] = data['speed'];
-            rasSatus['string'] = data['string'];
-            
-            let slider = document.getElementById("slider");
-            let sliderValue = document.getElementById("sliderValue");
-            slider.value = rasSatus['speed'];
-            sliderValue.innerHTML = rasSatus['speed'];
-            
-            if (rasSatus['speed'] > 0) {
-                document.getElementById("image2").src = ImageDri + 'leds.jpg';
-                document.getElementById("title2").style.color = "#3900E1";
+	    if (data['type'] == '2') {
+		    rasSatus['type'] = data['type'];
+		    rasSatus['speed'] = data['speed'];
+		    rasSatus['string'] = data['string'];
+		    
+		    let slider = document.getElementById("slider");
+		    let sliderValue = document.getElementById("sliderValue");
+		    slider.value = rasSatus['speed'];
+		    sliderValue.innerHTML = rasSatus['speed'];
+		    
+		    if (rasSatus['speed'] > 0) {
+			document.getElementById("image2").src = ImageDri + 'leds.jpg';
+			document.getElementById("title2").style.color = "#3900E1";
 
-                let absoluteSaturationValue = rasSatus['speed'] / 0.8 + 100;
-                document.getElementById("image2").style.filter = "saturate(" + absoluteSaturationValue + "%)";
-                document.getElementById('title2').style.filter = "saturate(" + absoluteSaturationValue + "%)";
-            } else {
-                document.getElementById("image2").src = ImageDri + 'leds_off.jpg';
-                document.getElementById("title2").style.color = "gray";
-            }
-            
-            if (rasSatus['string'] == '') {
-                document.getElementById('text1').textContent = "None"
-            } else {
-                document.getElementById('text1').textContent = rasSatus['string']
-            }
-
+			let absoluteSaturationValue = rasSatus['speed'] / 0.8 + 100;
+			document.getElementById("image2").style.filter = "saturate(" + absoluteSaturationValue + "%)";
+			document.getElementById('title2').style.filter = "saturate(" + absoluteSaturationValue + "%)";
+		    } else {
+			document.getElementById("image2").src = ImageDri + 'leds_off.jpg';
+			document.getElementById("title2").style.color = "gray";
+		    }
+		    
+		    if (rasSatus['string'] == '') {
+			document.getElementById('text1').textContent = "None"
+		    } else {
+			document.getElementById('text1').textContent = rasSatus['string']
+		    }
+		}
         } catch(error) {
             rasSatus = {
-                type : false,
+                type : '0',
                 speed : '0',
                 string : '',
                 ip : clientIp

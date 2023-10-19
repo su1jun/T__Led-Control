@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     var ledStatus = {
-        type : false,
+        type : '0',
         red : [false, false, false, false],
         green : [false, false, false, false],
         blue : [false, false, false, false],
@@ -116,28 +116,31 @@ window.addEventListener('DOMContentLoaded', event => {
         const data = JSON.parse(event['data']);
 
         try {
-            ledStatus['type'] = data['type'];
-            ledStatus['red'] = data['red'];
-            ledStatus['green'] = data['green'];
-            ledStatus['blue'] = data['blue'];
+	    if (data['type'] == '1') {
+		    ledStatus['type'] = data['type'];
+		    ledStatus['red'] = data['red'];
+		    ledStatus['green'] = data['green'];
+		    ledStatus['blue'] = data['blue'];
 
-            for (let i = 0; i < 4; i++) {
-                let mixedColor = mixColor(ledStatus['red'][i], ledStatus['green'][i], ledStatus['blue'][i])
-                let imageDriSrc = ImageDri + mixedColor + '.jpg';
-                document.getElementById('image' + (i+1)).src = imageDriSrc;
+		    for (let i = 0; i < 4; i++) {
+		        let mixedColor = mixColor(ledStatus['red'][i], ledStatus['green'][i], ledStatus['blue'][i])
+		        let imageDriSrc = ImageDri + mixedColor + '.jpg';
+		        document.getElementById('image' + (i+1)).src = imageDriSrc;
 
-                if (mixedColor == 'yellow') {
-                    document.getElementById('title' + (i+1)).style.color = "#E0D100";
-                } else if (mixedColor == 'white') {
-                    document.getElementById('title' + (i+1)).style.color = "#dddddd";
-                } else {
-                    document.getElementById('title' + (i+1)).style.color = mixedColor;
-                }
-                
-                document.getElementById('text' + (i+1)).textContent = mixText(ledStatus['red'][i], ledStatus['green'][i], ledStatus['blue'][i]);
-            }
+		        if (mixedColor == 'yellow') {
+		            document.getElementById('title' + (i+1)).style.color = "#E0D100";
+		        } else if (mixedColor == 'white') {
+		            document.getElementById('title' + (i+1)).style.color = "#dddddd";
+		        } else {
+		            document.getElementById('title' + (i+1)).style.color = mixedColor;
+		        }
+		        
+		        document.getElementById('text' + (i+1)).textContent = mixText(ledStatus['red'][i], ledStatus['green'][i], ledStatus['blue'][i]);
+		    }
+		}
         } catch(error) {
             ledStatus = {
+		type : 0,
                 red : [false, false, false, false],
                 green : [false, false, false, false],
                 blue : [false, false, false, false],
