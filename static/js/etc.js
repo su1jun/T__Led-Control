@@ -33,14 +33,14 @@ window.addEventListener('DOMContentLoaded', event => {
             sliderValue.innerHTML = rasSatus['speed'];
             
             if (rasSatus['speed'] > 0) {
-                document.getElementById("image2").src = ImageDri + 'fan.jpg';
+                document.getElementById("image2").src = ImageDri + 'leds.jpg';
                 document.getElementById("title2").style.color = "#3900E1";
 
                 let absoluteSaturationValue = rasSatus['speed'] / 0.8 + 100;
                 document.getElementById("image2").style.filter = "saturate(" + absoluteSaturationValue + "%)";
                 document.getElementById('title2').style.filter = "saturate(" + absoluteSaturationValue + "%)";
             } else {
-                document.getElementById("image2").src = ImageDri + 'fan_off.jpg';
+                document.getElementById("image2").src = ImageDri + 'leds_off.jpg';
                 document.getElementById("title2").style.color = "gray";
             }
             

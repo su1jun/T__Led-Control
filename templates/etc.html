@@ -14,7 +14,7 @@
                     <div class="title-text text-wrap text-color" id="title1">LCD</div>
                     <div class="content-text text-wrap">
                         <p class="mb-1">
-                            Click And Input your text<br>
+                            Click and Input your text<br>
                             LCD`s screen status<br>
                         </p>
                         <p class="fs-4 fw-bold" id="text1">
@@ -22,26 +22,24 @@
                         </p>
                     </div>
                 </div>
-                <div class="container d-flex align-items-center flex-column justify-content-center"></div>
-                    <div class="col-md-12 mb-2 image-block">
-                        <div class="images-item mx-auto">
-                            <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch1">
-                                <div class="images-item-caption-content text-center text-white"><i class="fa-solid fa-wind fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" id="image2" src="/static/assets/img/fan.jpg" alt="image2" />
-                        </div>
-                        <div class="title-text text-wrap" id="title2">Fan</div>
-                        <div class="content-text text-wrap">
-                            <p class="mb-1">
-                                Drag and Control Fan`s Speed<br>
-                                Press below button and Send Value
-                            </p>
-                        </div>
+                <div class="col-md-12 mb-2 image-block">
+                    <div class="images-item mx-auto">
+                        <!-- <div class="images-item-caption d-flex align-items-center justify-content-center {{ color }} h-100 w-100" id="switch2">
+                            <div class="images-item-caption-content text-center text-white"><i class="fa-solid fa-bolt-lightning fa-3x"></i></div>
+                        </div> -->
+                        <img class="img-fluid" id="image2" src="/static/assets/img/leds.jpg" alt="image2" />
                     </div>
-                    <div class="d-flex align-items-center flex-column justify-content-center">
-                        <input type="range" min="0" max="100" value="50" class="form-range custom-slider py-1 mb-2" id="slider">
-                        <button class="btn btn-primary btn-custom" id="myButton"><span class="text-center fw-bold fs-4 px-2" id="sliderValue">50</span></button>
+                    <div class="title-text text-wrap" id="title2">Blink</div>
+                    <div class="content-text text-wrap">
+                        <p class="mb-1">
+                            Drag and Control the Blinking of the LED<br>
+                            Press the button below and send the value
+                        </p>
                     </div>
+                </div>
+                <div class="d-flex align-items-center flex-column justify-content-center">
+                    <input type="range" min="0" max="100" value="50" class="form-range custom-slider py-1 mb-2" id="slider">
+                    <button class="btn btn-primary btn-custom" id="myButton"><span class="text-center fw-bold fs-4 px-2" id="sliderValue">50</span></button>
                 </div>
             </div>
         </main>
