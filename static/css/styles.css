@@ -222,6 +222,8 @@ strong {
 
 small, .small {
   font-size: 0.875em;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
+  font-weight: 400;
 }
 
 mark, .mark {
@@ -7993,6 +7995,8 @@ textarea.form-control-lg {
 
 .text-center {
   text-align: center !important;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
+  font-weight: 400;
 }
 
 .text-decoration-none {

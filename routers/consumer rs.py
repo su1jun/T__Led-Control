@@ -2,16 +2,18 @@ from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 from typing import List
 import json, re
 import RPi.GPIO as GPIO
-import RPi_I2C_driver
 import threading, time
 
-ws_rounter = APIRouter() # domain rounter
+ws_router = APIRouter() # domain rounter
 is_thread_running = False
 
-# Instantiate variables
+# Instantiate pattern ( check inputvalue )
 class Pattern:
     def __init__(self):
         self.val = "^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$"
+
+# Instantiate variables
+import RPi_I2C_driver
 
 class PIN:
     def __init__(self):
@@ -40,7 +42,6 @@ class RAS:
         }
         self.client_ip = {} # ip
         
-
 led = LED()
 ras = RAS()
 pin = PIN()
@@ -50,13 +51,6 @@ mylcd = RPi_I2C_driver.lcd()
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
  
-# connet pin
-# motorAIAPwm = GPIO.PWM(pin.status['fan'][0], 500)
-# motorAIAPwm.start(0)
-
-# motorAIBPwm = GPIO.PWM(pin.status['fan'][1], 500)
-# motorAIBPwm.start(0)
-
 for pin_color in ["red", "green", "blue"]:
     for idx, p in enumerate(pin.status[pin_color]):
         GPIO.setup(p, GPIO.OUT)
@@ -89,8 +83,7 @@ class MyThread(threading.Thread):
                 for idx, p in enumerate(self.pins["etc"]):
                     GPIO.setup(p, GPIO.OUT)
                     GPIO.output(p, True)
-                # print(f"_is_running {self._is_running}")
-                current_thread = threading.current_thread()
+                # current_thread = threading.current_thread()
                 # print(f"cur thread name: {current_thread.name}")
                 # print(f"cur thread obj: {current_thread}")
                 time.sleep(self.freq)
@@ -111,22 +104,14 @@ class MyThread(threading.Thread):
             self.freq = 0
         else:
             self.freq = (x + 20) / 50
-        
-    def stop(self):
-        self._is_running = False
-        print(f"stop_is_running {self._is_running}")
-        for pin_color in ["red", "green", "blue"]:
-            for idx, p in enumerate(self.pins[pin_color]):
-                GPIO.setup(p, GPIO.OUT)
-                GPIO.output(p, self.state[pin_color][idx])
-        
+
 if not is_thread_running:
     is_thread_running = True
     my_thread = MyThread(ras.status["speed"], led.status)
     my_thread.start()
-    
+
 # led panel handshake
-@ws_rounter.websocket("/ws/led")
+@ws_router.websocket("/ws/led")
 async def websocket_endpoint_led(websocket: WebSocket):
     
     # accept signal
@@ -150,13 +135,11 @@ async def websocket_endpoint_led(websocket: WebSocket):
                             else:
                                 raise HTTPException(status_code=400, detail="request is invalid")
                         my_thread.update_state(led.status)
-                        # print(f"led.status : {led.status}")
                         
             elif data['type'] == '0': # add new ip address
                 if data['ip'] not in ras.client_ip:
                     ras.client_ip[websocket] = data['ip']
                 
-                    # print(f"new add {ras.client_ip}")
             lcd_ip = ras.client_ip[websocket]
             lcd_ip = ((16 - len(lcd_ip)) // 2 * ' ') + lcd_ip
             mylcd.lcd_display_string(lcd_ip, 1)
@@ -164,14 +147,12 @@ async def websocket_endpoint_led(websocket: WebSocket):
             # led status broadcast
             for client in ras.client_ip:
                 await client.send_text(json.dumps(led.status))
-            
-            # print(f"broadcast list {ras.client_ip}")
 
     except WebSocketDisconnect:
         del ras.client_ip[websocket]
 
 # ras panel handshake
-@ws_rounter.websocket("/ws/ras")
+@ws_router.websocket("/ws/ras")
 async def websocket_endpoint_ras(websocket: WebSocket):
     
     await websocket.accept()
@@ -204,22 +185,16 @@ async def websocket_endpoint_ras(websocket: WebSocket):
                     raise HTTPException(status_code=400, detail="request is invalid")
                 
             elif data['type'] == '0': # add new ip address
-                # print(f"all ip {ras.client_ip}")
                 if data['ip'] not in ras.client_ip:
                     ras.client_ip[websocket] = data['ip']
                     
-                    # print(f"new add {ras.client_ip}")
-                    # print(f"all ip {ras.client_ip}")
             lcd_ip = ras.client_ip[websocket]
             lcd_ip = ((16 - len(lcd_ip)) // 2 * ' ') + lcd_ip
             mylcd.lcd_display_string(lcd_ip, 1)
 
             # ras status broadcast
             for client in ras.client_ip:
-                # print(f"보냄 {ras.status}")
                 await client.send_text(json.dumps(ras.status))
-
-            # print(f"broadcast list {ras.client_ip}")
 
     except WebSocketDisconnect:
         del ras.client_ip[websocket]

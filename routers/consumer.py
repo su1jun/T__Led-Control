@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 from typing import List
 import json, re
 
-ws_rounter = APIRouter() # domain rounter
+ws_router = APIRouter() # domain rounter
 is_thread_running = False
 
 # Instantiate variables
@@ -43,7 +43,7 @@ ras = RAS()
 pin = PIN()
  
 # led panel handshake
-@ws_rounter.websocket("/ws/led")
+@ws_router.websocket("/ws/led")
 async def websocket_endpoint_led(websocket: WebSocket):
     
     # accept signal
@@ -83,7 +83,7 @@ async def websocket_endpoint_led(websocket: WebSocket):
         del ras.client_ip[websocket]
 
 # ras panel handshake
-@ws_rounter.websocket("/ws/ras")
+@ws_router.websocket("/ws/ras")
 async def websocket_endpoint_ras(websocket: WebSocket):
     
     await websocket.accept()

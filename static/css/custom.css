@@ -1,13 +1,6 @@
 @charset "UTF-8";
 
-html {
-  height: 100%;
-  scroll-padding-top: calc(4.5rem - 1px);
-  user-select: none;
-}
-
 /* font */
-
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -15,10 +8,18 @@ html {
   font-style: normal;
 }
 
+html {
+  height: 100%;
+  scroll-padding-top: calc(4.5rem - 1px);
+  user-select: none;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
+  font-weight: 400;
+}
+
 .logo {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  font-family: "Jockey One", Arial, "Noto Sans", sans-serif;
+  font-family: "Jockey One", "Noto Sans", sans-serif, Arial;
   font-weight: 700;
   font-size: 3.25rem;
 }
@@ -26,7 +27,7 @@ html {
 .logo {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  font-family: "Jockey One", Arial, "Noto Sans", sans-serif;
+  font-family: "Jockey One", "Noto Sans", sans-serif, Arial;
   font-weight: 700;
 }
 
@@ -150,7 +151,7 @@ html {
 .navbar-brand {
   color: #fff;
   font-size: 2.5em;
-  font-family: "Jockey One", Arial, "Noto Sans", sans-serif;
+  font-family: "Jockey One", "Noto Sans", sans-serif, Arial;
   font-weight: 700;
 }
 
@@ -161,7 +162,7 @@ html {
 
 .navbar-nav .nav-link {
   color: #fff;
-  font-family: "Pretendard-Regular", Arial, "Noto Sans", sans-serif;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
   font-weight: 400;
 }
 
@@ -182,7 +183,7 @@ html {
 
 .navbar-toggler {
   font-size: 1.5rem;
-  font-family: "Pretendard-Regular", Arial, "Noto Sans", sans-serif;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
   font-weight: 400;
 }
 
@@ -235,13 +236,13 @@ html {
 .masthead .masthead-heading {
   font-size: 3.75rem;
   line-height: 3.75rem;
-  font-family: "Pretendard-Regular", Arial, "Noto Sans", sans-serif;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
   font-weight: 700;
   text-align: center;
 }
 .masthead .masthead-subheading {
   font-size: 1.5rem;
-  font-family: "Pretendard-Regular", Arial, "Noto Sans", sans-serif;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
   font-weight: 400;
   text-align: center;
 }
@@ -308,7 +309,7 @@ html {
   padding: 0rem 0.75rem;
   margin: 0.5rem 0.75rem 0 0.75rem;
   font-size: 2.25rem;
-  font-family: "Pretendard-Regular", Arial, "Noto Sans", sans-serif;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
   font-weight: 700;
   text-align: center;
 }
@@ -317,7 +318,7 @@ html {
   padding: 0rem 0.75rem;
   margin: 0rem 0.15rem;
   font-size: 1.25rem;
-  font-family: "Pretendard-Regular", Arial, "Noto Sans", sans-serif;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
   font-weight: 400;
   text-align: center;
   color: #1e1e1e;
@@ -401,11 +402,15 @@ html {
 #footer .active {
   color : #ffffff;
   font-weight : bold;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
+  font-weight: 400;
 }
 
 #footer a {
   color : #cccccc;
   text-decoration : none;
+  font-family: "Pretendard-Regular", "Noto Sans", sans-serif, Arial;
+  font-weight: 400;
 }
 
 #footer .selcted {
