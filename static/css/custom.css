@@ -212,8 +212,8 @@ html {
 
 /* main section */
 #Masthead {
-  padding-top: calc(6rem + 84px);
-  padding-bottom: calc(6rem + 68px);
+  padding-top: 10rem;
+  padding-bottom: 9rem;
 }
 
 #Masthead .red-color {
@@ -252,8 +252,8 @@ html {
 
 @media (min-width: 992px) {
   .masthead {
-    padding-top: calc(6rem + 84px);
-    padding-bottom: calc(6rem + 68px);
+    padding-top: 10rem;
+    padding-bottom: 9rem;
   }
   .masthead .masthead-heading {
     font-size: 4.5rem;
