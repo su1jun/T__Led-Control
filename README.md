@@ -18,7 +18,7 @@
 <h2>How Does It Work?</h2>
 <ul>
     <li>Visit the site.</li>
-    <li>Select one of the <b>control panels for</b> the device you want to control <br>(e.g., Red LED, Blue LED, Green LED, or Fan) by clicking on one of the menu options.</li>
+    <li>Select one of the <b>control panels for</b> the device you want to control <br>(e.g., Red LED, Blue LED, Green LED, or ETC) by clicking on one of the menu options.</li>
     <li>Control the <b>LED</b> or <b>Fan</b> by clicking on an image or button.</li>
     <li>Once clicked, the server receives your data, processes the command, <br>sends back data, and allows you to see whether the <b>device is turned on or off.</b></li>
 </ul>
@@ -28,15 +28,14 @@
 <h3>Hardware</h3>
 <ul>
     <li><b>Main</b> : Raspberry Pi 4</li>
-    <li><b>Components</b> : Various LEDs, Fan Motor</li>
-    <li><b>Circuit</b> : Jumper Wires, Breadboard</li>
+    <li><b>Components</b> : Various LEDs, Character LCD</li>
+    <li><b>Circuit</b> : Jumper Wires, Breadboard, Resistance</li>
 </ul>
 <br>
 <h3>Software</h3>
 <ul>
-    <li><b>Publishing</b> : HTML + CSS (Bootstrap)</li>
+    <li><b>Publishing</b> : HTML + CSS (Bootstrap) + JS</li>
     <li><b>Front-end</b> : Vanilla JS</li>
     <li><b>Back-end</b> : FastAPI</li>
     <li><b>Additional Logic</b> : Python</li>
 </ul>
-<br><br>
