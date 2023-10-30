@@ -24,6 +24,13 @@
 </ul>
 <br>
 
+<h2>Demo</h2>
+<p>
+    My aim was to create a panel that can be controlled <b>by multiple users</b><br>
+    To achieve this, I utilized Websockets to enable <b>asynchronous communication</b>.
+</p>
+<br>
+
 <h2>Build Details</h2>
 <h3>Hardware</h3>
 <ul>
